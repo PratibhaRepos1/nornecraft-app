@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import './Shop.css';
 
 interface Product {
@@ -12,11 +12,13 @@ interface Product {
   rating: number;
 }
 
-const API_URL = 'http://localhost:3000/api/products';
+const API_URL =
+  import.meta.env.DEV
+    ? 'http://localhost:3000/api/products'
+    : 'https://pratibharepos1.github.io/nornecraft-api/products.json';
 
 function Shop() {
-  const [products, setProducts] = useState<Product[]>([]);
-  const [categories, setCategories] = useState<string[]>([]);
+  const [allProducts, setAllProducts] = useState<Product[]>([]);
   const [selectedCategory, setSelectedCategory] = useState('');
   const [sortBy, setSortBy] = useState('');
   const [loading, setLoading] = useState(true);
@@ -24,28 +26,42 @@ function Shop() {
 
   useEffect(() => {
     fetchProducts();
-  }, [selectedCategory, sortBy]);
+  }, []);
 
   async function fetchProducts() {
     setLoading(true);
     setError('');
-
-    const params = new URLSearchParams();
-    if (selectedCategory) params.set('category', selectedCategory);
-    if (sortBy) params.set('sort', sortBy);
-
     try {
-      const res = await fetch(`${API_URL}?${params}`);
+      const res = await fetch(API_URL);
       if (!res.ok) throw new Error('Failed to fetch products');
       const data = await res.json();
-      setProducts(data.products);
-      setCategories(data.categories);
+      setAllProducts(data.products ?? data);
     } catch {
-      setError('Unable to load products. Make sure the API server is running on port 3000.');
+      setError('Unable to load products. Please try again later.');
     } finally {
       setLoading(false);
     }
   }
+
+  const categories = useMemo(
+    () => [...new Set(allProducts.map((p) => p.category))],
+    [allProducts]
+  );
+
+  const products = useMemo(() => {
+    let filtered = selectedCategory
+      ? allProducts.filter(
+          (p) => p.category.toLowerCase() === selectedCategory.toLowerCase()
+        )
+      : [...allProducts];
+
+    if (sortBy === 'price_asc') filtered.sort((a, b) => a.price - b.price);
+    else if (sortBy === 'price_desc') filtered.sort((a, b) => b.price - a.price);
+    else if (sortBy === 'rating') filtered.sort((a, b) => b.rating - a.rating);
+    else if (sortBy === 'name') filtered.sort((a, b) => a.name.localeCompare(b.name));
+
+    return filtered;
+  }, [allProducts, selectedCategory, sortBy]);
 
   return (
     <div className="shop">
