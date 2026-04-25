@@ -17,6 +17,22 @@ const API_URL =
     ? 'http://localhost:3000/api/products'
     : 'https://pratibharepos1.github.io/nornecraft-api/products.json';
 
+const productImageModules = import.meta.glob(
+  '../assets/images/products/*.{jpg,jpeg,png,webp}',
+  { eager: true, import: 'default' }
+) as Record<string, string>;
+
+const productImages: Record<string, string> = Object.fromEntries(
+  Object.entries(productImageModules).map(([path, url]) => [
+    path.split('/').pop() ?? '',
+    url,
+  ])
+);
+
+function isImageFile(value: string): boolean {
+  return /\.(jpe?g|png|webp)$/i.test(value);
+}
+
 function Shop() {
   const [allProducts, setAllProducts] = useState<Product[]>([]);
   const [selectedCategory, setSelectedCategory] = useState('');
@@ -126,7 +142,16 @@ function Shop() {
               {products.map((product) => (
                 <div key={product.id} className="product-card">
                   <div className="product-image">
-                    <span className="product-emoji">{product.image}</span>
+                    {isImageFile(product.image) && productImages[product.image] ? (
+                      <img
+                        src={productImages[product.image]}
+                        alt={product.name}
+                        className="product-photo"
+                        loading="lazy"
+                      />
+                    ) : (
+                      <span className="product-emoji">{product.image}</span>
+                    )}
                     <span className="product-category">{product.category}</span>
                   </div>
                   <div className="product-info">
