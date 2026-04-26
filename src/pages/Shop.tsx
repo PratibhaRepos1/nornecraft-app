@@ -33,6 +33,17 @@ function isImageFile(value: string): boolean {
   return /\.(jpe?g|png|webp)$/i.test(value);
 }
 
+function isImageUrl(value: string): boolean {
+  return /^https?:\/\//i.test(value);
+}
+
+function resolveImageSrc(value: string): string | null {
+  if (!value) return null;
+  if (isImageUrl(value)) return value;
+  if (isImageFile(value) && productImages[value]) return productImages[value];
+  return null;
+}
+
 function Shop() {
   const [allProducts, setAllProducts] = useState<Product[]>([]);
   const [selectedCategory, setSelectedCategory] = useState('');
@@ -151,16 +162,19 @@ function Shop() {
               {products.map((product) => (
                 <div key={product.id} className="product-card">
                   <div className="product-image">
-                    {isImageFile(product.image) && productImages[product.image] ? (
-                      <img
-                        src={productImages[product.image]}
-                        alt={product.name}
-                        className="product-photo"
-                        loading="lazy"
-                      />
-                    ) : (
-                      <span className="product-emoji">{product.image}</span>
-                    )}
+                    {(() => {
+                      const src = resolveImageSrc(product.image);
+                      return src ? (
+                        <img
+                          src={src}
+                          alt={product.name}
+                          className="product-photo"
+                          loading="lazy"
+                        />
+                      ) : (
+                        <span className="product-emoji">{product.image}</span>
+                      );
+                    })()}
                     <span className="product-category">{product.category}</span>
                   </div>
                   <div className="product-info">

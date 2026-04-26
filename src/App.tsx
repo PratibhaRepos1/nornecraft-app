@@ -7,6 +7,7 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 import Blog from './pages/Blog';
 import FAQ from './pages/FAQ';
+import AddProduct from './pages/AddProduct';
 import './App.css';
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/faq" element={<FAQ />} />
+          <Route path="/add-product" element={<AddProduct />} />
         </Routes>
       </main>
       <Footer />
