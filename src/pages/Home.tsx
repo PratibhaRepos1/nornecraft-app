@@ -39,10 +39,7 @@ function Home() {
               <p>
                 Sign up for our newsletter to be the first to know when we launch.
               </p>
-              <div className="newsletter-form">
-                <input type="email" placeholder="Enter your email" />
-                <button className="btn btn-primary">Notify Me</button>
-              </div>
+             
             </div>
           </div>
         </div>

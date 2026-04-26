@@ -81,6 +81,15 @@ function Shop() {
 
   return (
     <div className="shop">
+      <button type="button" className="shop-cart" aria-label="Shopping cart">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M7 4h-2a1 1 0 0 0 0 2h1.22l2.32 10.43a3 3 0 0 0 2.93 2.32h7.79a3 3 0 0 0 2.94-2.39l1.27-6.36a1 1 0 0 0-.98-1.2H8.32L7.95 3.04A1 1 0 0 0 6.97 2H4a1 1 0 0 0 0 2h2.18z" />
+          <circle cx="10" cy="21" r="1.7" />
+          <circle cx="19" cy="21" r="1.7" />
+        </svg>
+        <span className="shop-cart-badge">0</span>
+      </button>
+
       <div className="page-hero">
         <h1>Shop</h1>
       </div>

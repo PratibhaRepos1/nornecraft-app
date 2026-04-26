@@ -1,104 +1,116 @@
+.announcement-bar {
+  background: var(--navy);
+  color: var(--white);
+  font-size: 0.75rem;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.5rem 1rem;
+  flex-wrap: wrap;
+}
+
+.announcement-bar .dot {
+  color: var(--peach);
+  font-size: 0.9rem;
+  line-height: 1;
+}
+
 .header {
-  background: var(--brown-dark);
   position: sticky;
   top: 0;
   z-index: 1000;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  background: var(--white);
+  border-bottom: 1px solid var(--ice-warm);
 }
 
 .header-inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
+  gap: 1.5rem;
+  min-height: 80px;
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
 }
 
 .logo img {
-  max-width: 110px;
+  width: 90px;
   height: auto;
+  display: block;
+  filter: brightness(0) saturate(100%) invert(38%) sepia(15%) saturate(900%)
+    hue-rotate(48deg) brightness(92%) contrast(82%);
 }
 
 .nav {
   display: flex;
-  gap: 2rem;
+  gap: 0.25rem;
+  align-items: center;
 }
 
 .nav a {
-  font-family: var(--font-heading);
-  font-size: 16px;
-  text-transform: uppercase;
-  color: var(--white);
-  letter-spacing: 1px;
-  padding: 0.5rem 0;
-  position: relative;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  color: var(--navy);
+  padding: 0.55rem 1rem;
+  border-radius: 999px;
+  transition: color 0.2s ease, background 0.2s ease;
+  text-transform: none;
 }
 
 .nav a::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: var(--gold);
-  transition: width 0.3s;
+  display: none;
 }
 
-.nav a:hover,
+.nav a:hover {
+  color: var(--coral);
+}
+
 .nav a.active {
-  color: var(--gold);
-}
-
-.nav a:hover::after,
-.nav a.active::after {
-  width: 100%;
+  color: var(--white);
+  background: var(--navy);
 }
 
 .header-actions {
   display: flex;
   align-items: center;
-  gap: 1.5rem;
-}
-
-.social-links {
-  display: flex;
-  gap: 0.75rem;
-}
-
-.social-links a {
-  color: var(--white);
-  transition: color 0.3s;
-}
-
-.social-links a:hover {
-  color: var(--gold);
-}
-
-.cart-icon {
-  color: var(--white);
-  position: relative;
-}
-
-.cart-icon:hover {
-  color: var(--gold);
+  gap: 0.5rem;
 }
 
 .menu-toggle {
   display: none;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   gap: 5px;
-  background: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  background: rgba(93, 107, 74, 0.1);
   border: none;
   cursor: pointer;
-  padding: 5px;
+  padding: 0;
+}
+
+.menu-toggle:hover {
+  background: rgba(93, 107, 74, 0.18);
 }
 
 .menu-toggle span {
-  width: 25px;
+  width: 18px;
   height: 2px;
-  background: var(--white);
-  transition: all 0.3s;
+  border-radius: 2px;
+  background: var(--navy);
+  transition: transform 0.3s, opacity 0.3s;
 }
 
 .menu-toggle.active span:nth-child(1) {
@@ -113,22 +125,18 @@
   transform: rotate(-45deg) translate(5px, -5px);
 }
 
-@media (max-width: 768px) {
-  .menu-toggle {
-    display: flex;
-  }
-
+@media (max-width: 900px) {
   .nav {
     display: none;
     position: absolute;
     top: 100%;
     left: 0;
     right: 0;
-    background: var(--brown-dark);
     flex-direction: column;
-    padding: 1rem 1.5rem 2rem;
-    gap: 0;
-    border-top: 1px solid var(--brown-medium);
+    background: var(--white);
+    padding: 0.75rem 1rem;
+    gap: 0.25rem;
+    border-bottom: 1px solid var(--ice-warm);
   }
 
   .nav-open {
@@ -136,11 +144,26 @@
   }
 
   .nav a {
-    padding: 0.75rem 0;
-    border-bottom: 1px solid var(--brown-medium);
+    width: 100%;
+    padding: 0.85rem 1rem;
+    border-radius: 8px;
+    font-size: 14.5px;
   }
 
-  .social-links {
+  .menu-toggle {
+    display: inline-flex;
+  }
+}
+
+@media (max-width: 520px) {
+  .announcement-bar {
+    font-size: 0.7rem;
+    gap: 0.55rem;
+    padding: 0.45rem 0.75rem;
+  }
+
+  .announcement-bar .dot,
+  .announcement-bar > span:nth-of-type(3) {
     display: none;
   }
 }
