@@ -7,3 +7,22 @@
 main {
   flex: 1;
 }
+
+.skip-link {
+  position: absolute;
+  left: 0;
+  top: -40px;
+  padding: 0.5rem 1rem;
+  background: #1a3a2e;
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+  z-index: 10000;
+  transition: top 0.15s ease;
+}
+
+.skip-link:focus {
+  top: 0;
+  outline: 2px solid #c9a86a;
+  outline-offset: 2px;
+}

@@ -5,8 +5,6 @@ import './Footer.css';
 function Footer() {
   return (
     <footer className="footer">
-      
-
       <div className="footer-trust">
         <div className="container footer-trust-grid">
           <div className="trust-item">
@@ -65,7 +63,14 @@ function Footer() {
       <div className="footer-main">
         <div className="container footer-grid">
           <div className="footer-brand">
-            <img src={logo} alt="Norne Craft" className="footer-logo" />
+            <img
+              src={logo}
+              alt="Norne Craft logo"
+              className="footer-logo"
+              width="160"
+              height="40"
+              loading="lazy"
+            />
             <p className="tagline">Ancient Magic, Modern Craft</p>
             <p className="footer-desc">
               Norse-inspired goods made with traditional techniques and
@@ -99,8 +104,8 @@ function Footer() {
             <ul>
               <li><Link to="/faq">FAQ</Link></li>
               <li><Link to="/contact">Contact</Link></li>
-              <li><a href="#">Shipping Info</a></li>
-              <li><a href="#">Returns &amp; Exchanges</a></li>
+              <li><Link to="/faq">Shipping Info</Link></li>
+              <li><Link to="/faq">Returns &amp; Exchanges</Link></li>
             </ul>
           </div>
 
@@ -109,8 +114,7 @@ function Footer() {
             <ul>
               <li><Link to="/about">About</Link></li>
               <li><Link to="/blog">Blog</Link></li>
-              <li><a href="#">Privacy Policy</a></li>
-              <li><a href="#">Terms of Service</a></li>
+              <li><Link to="/contact">Contact</Link></li>
             </ul>
           </div>
         </div>

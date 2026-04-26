@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import SEO from '../components/SEO';
 import './Blog.css';
 
 const blogPosts = [
@@ -61,6 +61,11 @@ const blogPosts = [
 function Blog() {
   return (
     <div className="blog">
+      <SEO
+        title="Blog"
+        description="Stories from the world of Norse craftsmanship: drinking horn history, rune meanings, mythology, and care guides for your handcrafted pieces."
+        path="/blog"
+      />
       <div className="page-hero">
         <h1>Blog</h1>
       </div>
@@ -85,9 +90,9 @@ function Blog() {
                   </div>
                   <h3>{post.title}</h3>
                   <p>{post.excerpt}</p>
-                  <Link to="#" className="read-more">
-                    Read More &rarr;
-                  </Link>
+                  <span className="read-more" aria-label={`${post.title} — coming soon`}>
+                    Coming Soon
+                  </span>
                 </div>
               </article>
             ))}

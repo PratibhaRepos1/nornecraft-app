@@ -1,11 +1,31 @@
 import { Link } from 'react-router-dom';
 import comingSoonImg from '../assets/images/coming soon.webp';
 import logo from '../assets/images/nornecraft logo.webp';
+import SEO from '../components/SEO';
+import { SITE_URL } from '../lib/seo';
 import './Home.css';
+
+const homeJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'Norne Craft',
+  url: SITE_URL,
+  potentialAction: {
+    '@type': 'SearchAction',
+    target: `${SITE_URL}/shop?search={search_term_string}`,
+    'query-input': 'required name=search_term_string',
+  },
+};
 
 function Home() {
   return (
     <div className="home">
+      <SEO
+        title="Ancient Magic, Modern Craft"
+        description="Handcrafted Norse-inspired drinking horns, jewelry, and home decor forged with tradition and built to last. Worldwide shipping, 30-day returns."
+        path="/"
+        jsonLd={homeJsonLd}
+      />
       <section className="hero">
         <div className="hero-overlay">
           <div className="hero-content">

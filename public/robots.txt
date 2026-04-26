@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /add-product
+Disallow: /#/add-product
+
+Sitemap: https://nornecraft.com/sitemap.xml

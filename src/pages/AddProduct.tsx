@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import SEO from '../components/SEO';
 import './AddProduct.css';
 
 const ADMIN_CREDS_KEY = 'nornecraft-admin-creds';
@@ -167,6 +168,7 @@ function AddProduct() {
   if (!adminCreds) {
     return (
       <div className="add-product">
+        <SEO title="Admin Sign In" path="/add-product" noindex />
         <div className="page-hero">
           <h1>Admin Sign In</h1>
         </div>
@@ -224,6 +226,7 @@ function AddProduct() {
 
   return (
     <div className="add-product">
+      <SEO title="Add Product" path="/add-product" noindex />
       <div className="page-hero">
         <h1>Add Product</h1>
       </div>

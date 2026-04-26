@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import SEO from '../components/SEO';
 import './Contact.css';
 
 function Contact() {
@@ -21,6 +22,11 @@ function Contact() {
 
   return (
     <div className="contact">
+      <SEO
+        title="Contact Us"
+        description="Questions about our products or want to place a custom order? Email info@nornecraft.com or send us a message — we usually reply within one business day."
+        path="/contact"
+      />
       <div className="page-hero">
         <h1>Contact Us</h1>
       </div>

@@ -1,9 +1,15 @@
 import comingSoonImg from '../assets/images/coming soon.webp';
+import SEO from '../components/SEO';
 import './About.css';
 
 function About() {
   return (
     <div className="about">
+      <SEO
+        title="About Us"
+        description="Norne Craft was born from a passion for Norse heritage and traditional craftsmanship. Learn the story behind our handcrafted, small-batch collection."
+        path="/about"
+      />
       <div className="page-hero">
         <h1>About Us</h1>
       </div>

@@ -13,8 +13,9 @@ import './App.css';
 function App() {
   return (
     <div className="app">
+      <a href="#main" className="skip-link">Skip to main content</a>
       <Header />
-      <main>
+      <main id="main" tabIndex={-1}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/shop" element={<Shop />} />

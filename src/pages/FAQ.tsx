@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import SEO from '../components/SEO';
 import './FAQ.css';
 
 const faqData = [
@@ -55,6 +56,21 @@ const faqData = [
   },
 ];
 
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqData.flatMap((cat) =>
+    cat.questions.map((item) => ({
+      '@type': 'Question',
+      name: item.q,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: item.a,
+      },
+    }))
+  ),
+};
+
 function FAQ() {
   const [openIndex, setOpenIndex] = useState<string | null>(null);
 
@@ -64,6 +80,12 @@ function FAQ() {
 
   return (
     <div className="faq">
+      <SEO
+        title="FAQ"
+        description="Answers about Norne Craft products, shipping, returns, and care: are drinking horns food-safe, do you ship internationally, what is your return policy."
+        path="/faq"
+        jsonLd={faqJsonLd}
+      />
       <div className="page-hero">
         <h1>FAQ</h1>
       </div>
