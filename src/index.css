@@ -292,7 +292,7 @@ img {
 
 .page-hero {
   background: linear-gradient(rgba(45, 50, 35, 0.4), rgba(45, 50, 35, 0.4)),
-    url('/src/assets/images/coming soon.webp') center/cover no-repeat;
+    url('./assets/images/coming soon.webp') center/cover no-repeat;
   min-height: 240px;
   display: flex;
   align-items: center;
