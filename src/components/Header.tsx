@@ -28,7 +28,6 @@ function Header() {
           <NavLink to="/blog" onClick={() => setMenuOpen(false)}>Blog</NavLink>
           <NavLink to="/contact" onClick={() => setMenuOpen(false)}>Contact</NavLink>
           <NavLink to="/faq" onClick={() => setMenuOpen(false)}>FAQ</NavLink>
-          <NavLink to="/add-product" onClick={() => setMenuOpen(false)} rel="nofollow">Add Product</NavLink>
         </nav>
 
         <div className="header-actions">
