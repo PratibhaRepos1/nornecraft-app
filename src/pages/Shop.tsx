@@ -1,5 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import SEO from '../components/SEO';
+import comingSoonImg from '../assets/images/coming soon.webp';
+import '../pages/Home.css';
 import './Shop.css';
 
 interface Product {
@@ -12,6 +14,10 @@ interface Product {
   stock: number;
   rating: number;
 }
+
+// Toggle: true = show "Coming Soon" banner only (client-facing).
+// false = show full products grid (local dev / preview).
+const SHOW_COMING_SOON_ONLY = true;
 
 const API_URL =
   import.meta.env.DEV
@@ -53,6 +59,7 @@ function Shop() {
   const [error, setError] = useState('');
 
   useEffect(() => {
+    if (SHOW_COMING_SOON_ONLY) return;
     fetchProducts();
   }, []);
 
@@ -113,6 +120,20 @@ function Shop() {
 
       <section className="shop-content">
         <div className="container">
+          {SHOW_COMING_SOON_ONLY ? (
+            <section className="coming-soon-section shop-coming-soon">
+              <div className="coming-soon-grid">
+                <div className="coming-soon-image">
+                  <img src={comingSoonImg} alt="Norse craft products" />
+                </div>
+                <div className="coming-soon-text">
+                  <h2>Coming Soon</h2>
+                  <p>Our full collection is being prepared. Check back soon for handcrafted Norse-inspired drinking horns, jewelry, and home decor.</p>
+                </div>
+              </div>
+            </section>
+          ) : (
+          <>
           <div className="shop-banner">
             <h2>Coming Soon</h2>
             <p>Our full collection is being prepared. Browse our preview below.</p>
@@ -206,6 +227,8 @@ function Shop() {
             <div className="shop-status">
               <p>No products found matching your filters.</p>
             </div>
+          )}
+          </>
           )}
         </div>
       </section>

@@ -73,6 +73,11 @@
   color: var(--charcoal);
 }
 
+.shop-coming-soon {
+  padding: 4rem 0 2rem;
+  background: transparent;
+}
+
 /* Filter Controls */
 .shop-controls {
   display: flex;
