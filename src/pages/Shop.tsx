@@ -17,12 +17,12 @@ interface Product {
 
 // Toggle: true = show "Coming Soon" banner only (client-facing).
 // false = show full products grid (local dev / preview).
-const SHOW_COMING_SOON_ONLY = true;
+const SHOW_COMING_SOON_ONLY = false;
 
 const API_URL =
   import.meta.env.DEV
     ? 'http://localhost:3000/api/products'
-    : 'https://pratibharepos1.github.io/nornecraft-api/products.json';
+    : 'https://nornecraft-api.vercel.app/api/products';
 
 const productImageModules = import.meta.glob(
   '../assets/images/products/*.{jpg,jpeg,png,webp}',
