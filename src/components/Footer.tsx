@@ -1,8 +1,11 @@
 import { Link } from 'react-router-dom';
 import logo from '../assets/images/nornecraft logo.webp';
+import { useBasePath, withBase } from '../config/site';
 import './Footer.css';
 
 function Footer() {
+  const basePath = useBasePath();
+  const link = (path: string) => withBase(basePath, path);
   return (
     <footer className="footer">
       <div className="footer-trust">
@@ -92,29 +95,29 @@ function Footer() {
           <div className="footer-links">
             <h4>Shop</h4>
             <ul>
-              <li><Link to="/shop">All Products</Link></li>
-              <li><Link to="/shop">Drinking Horns</Link></li>
-              <li><Link to="/shop">Jewelry</Link></li>
-              <li><Link to="/shop">Home Decor</Link></li>
+              <li><Link to={link('/shop')}>All Products</Link></li>
+              <li><Link to={link('/shop')}>Drinking Horns</Link></li>
+              <li><Link to={link('/shop')}>Jewelry</Link></li>
+              <li><Link to={link('/shop')}>Home Decor</Link></li>
             </ul>
           </div>
 
           <div className="footer-links">
             <h4>Help</h4>
             <ul>
-              <li><Link to="/faq">FAQ</Link></li>
-              <li><Link to="/contact">Contact</Link></li>
-              <li><Link to="/faq">Shipping Info</Link></li>
-              <li><Link to="/faq">Returns &amp; Exchanges</Link></li>
+              <li><Link to={link('/faq')}>FAQ</Link></li>
+              <li><Link to={link('/contact')}>Contact</Link></li>
+              <li><Link to={link('/faq')}>Shipping Info</Link></li>
+              <li><Link to={link('/faq')}>Returns &amp; Exchanges</Link></li>
             </ul>
           </div>
 
           <div className="footer-links">
             <h4>Company</h4>
             <ul>
-              <li><Link to="/about">About</Link></li>
-              <li><Link to="/blog">Blog</Link></li>
-              <li><Link to="/contact">Contact</Link></li>
+              <li><Link to={link('/about')}>About</Link></li>
+              <li><Link to={link('/blog')}>Blog</Link></li>
+              <li><Link to={link('/contact')}>Contact</Link></li>
             </ul>
           </div>
         </div>

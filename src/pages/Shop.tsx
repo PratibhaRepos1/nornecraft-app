@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import SEO from '../components/SEO';
 import comingSoonImg from '../assets/images/coming soon.webp';
+import { useShowComingSoon } from '../config/site';
 import '../pages/Home.css';
 import './Shop.css';
 
@@ -14,10 +15,6 @@ interface Product {
   stock: number;
   rating: number;
 }
-
-// Toggle: true = show "Coming Soon" banner only (client-facing).
-// false = show full products grid (local dev / preview).
-const SHOW_COMING_SOON_ONLY = false;
 
 const API_URL =
   import.meta.env.DEV
@@ -52,6 +49,7 @@ function resolveImageSrc(value: string): string | null {
 }
 
 function Shop() {
+  const showComingSoon = useShowComingSoon();
   const [allProducts, setAllProducts] = useState<Product[]>([]);
   const [selectedCategory, setSelectedCategory] = useState('');
   const [sortBy, setSortBy] = useState('');
@@ -59,9 +57,9 @@ function Shop() {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    if (SHOW_COMING_SOON_ONLY) return;
+    if (showComingSoon) return;
     fetchProducts();
-  }, []);
+  }, [showComingSoon]);
 
   async function fetchProducts() {
     setLoading(true);
@@ -120,7 +118,7 @@ function Shop() {
 
       <section className="shop-content">
         <div className="container">
-          {SHOW_COMING_SOON_ONLY ? (
+          {showComingSoon ? (
             <section className="coming-soon-section shop-coming-soon">
               <div className="coming-soon-grid">
                 <div className="coming-soon-image">

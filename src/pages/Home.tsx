@@ -3,6 +3,7 @@ import comingSoonImg from '../assets/images/coming soon.webp';
 import logo from '../assets/images/nornecraft logo.webp';
 import SEO from '../components/SEO';
 import { SITE_URL } from '../lib/seo';
+import { useBasePath, withBase } from '../config/site';
 import './Home.css';
 
 const homeJsonLd = {
@@ -18,6 +19,7 @@ const homeJsonLd = {
 };
 
 function Home() {
+  const basePath = useBasePath();
   return (
     <div className="home">
       <SEO
@@ -35,8 +37,8 @@ function Home() {
               Handcrafted Norse-inspired goods forged with tradition and built to last
             </p>
             <div className="hero-buttons">
-              <Link to="/shop" className="btn btn-primary">Shop Now</Link>
-              <Link to="/about" className="btn btn-outline">Our Story</Link>
+              <Link to={withBase(basePath, '/shop')} className="btn btn-primary">Shop Now</Link>
+              <Link to={withBase(basePath, '/about')} className="btn btn-outline">Our Story</Link>
             </div>
           </div>
         </div>
