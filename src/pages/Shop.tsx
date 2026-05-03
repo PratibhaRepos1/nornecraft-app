@@ -51,7 +51,7 @@ function resolveImageSrc(value: string): string | null {
 
 function Shop() {
   const showComingSoon = useShowComingSoon();
-  const { t } = useTranslation();
+  const { t, language } = useTranslation();
   const [allProducts, setAllProducts] = useState<Product[]>([]);
   const [selectedCategory, setSelectedCategory] = useState('');
   const [sortBy, setSortBy] = useState('');
@@ -141,13 +141,13 @@ function Shop() {
 
           <div className="shop-controls">
             <div className="filter-group">
-              <label htmlFor="category">Category:</label>
+              <label htmlFor="category">{t('shop.filter.category')}</label>
               <select
                 id="category"
                 value={selectedCategory}
                 onChange={(e) => setSelectedCategory(e.target.value)}
               >
-                <option value="">All Categories</option>
+                <option value="">{t('shop.filter.allCategories')}</option>
                 {categories.map((cat) => (
                   <option key={cat} value={cat}>{cat}</option>
                 ))}
@@ -155,17 +155,17 @@ function Shop() {
             </div>
 
             <div className="filter-group">
-              <label htmlFor="sort">Sort by:</label>
+              <label htmlFor="sort">{t('shop.filter.sortBy')}</label>
               <select
                 id="sort"
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value)}
               >
-                <option value="">Default</option>
-                <option value="price_asc">Price: Low to High</option>
-                <option value="price_desc">Price: High to Low</option>
-                <option value="rating">Top Rated</option>
-                <option value="name">Name A-Z</option>
+                <option value="">{t('shop.sort.default')}</option>
+                <option value="price_asc">{t('shop.sort.priceAsc')}</option>
+                <option value="price_desc">{t('shop.sort.priceDesc')}</option>
+                <option value="rating">{t('shop.sort.rating')}</option>
+                <option value="name">{t('shop.sort.name')}</option>
               </select>
             </div>
           </div>
@@ -212,7 +212,11 @@ function Shop() {
                       <span className="product-stock">{product.stock > 0 ? `${product.stock} in stock` : 'Out of stock'}</span>
                     </div>
                     <div className="product-footer">
-                      <span className="product-price">${product.price.toFixed(2)}</span>
+                      <span className="product-price">
+                        {language === 'no'
+                          ? `NOK ${product.price.toFixed(2)}`
+                          : `€ ${product.price.toFixed(2)}`}
+                      </span>
                       <button className="btn btn-primary btn-sm" disabled={product.stock === 0}>
                         {product.stock > 0 ? 'Add to Cart' : 'Sold Out'}
                       </button>

@@ -31,6 +31,15 @@ export const en = {
   'comingSoon.pageBody':
     'This page is being prepared. Check back soon for handcrafted Norse-inspired drinking horns, jewelry, and home decor.',
 
+  'shop.filter.category': 'Category:',
+  'shop.filter.allCategories': 'All Categories',
+  'shop.filter.sortBy': 'Sort by:',
+  'shop.sort.default': 'Default',
+  'shop.sort.priceAsc': 'Price: Low to High',
+  'shop.sort.priceDesc': 'Price: High to Low',
+  'shop.sort.rating': 'Top Rated',
+  'shop.sort.name': 'Name A-Z',
+
   'features.authentic.title': 'Authentic Craft',
   'features.authentic.body':
     'Each piece is handcrafted using traditional Norse techniques passed down through generations.',

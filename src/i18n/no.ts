@@ -32,6 +32,15 @@ export const no: Record<TranslationKey, string> = {
   'comingSoon.pageBody':
     'Denne siden forberedes. Kom tilbake snart for håndlagde norrøn-inspirerte drikkehorn, smykker og hjemmedekor.',
 
+  'shop.filter.category': 'Kategori:',
+  'shop.filter.allCategories': 'Alle kategorier',
+  'shop.filter.sortBy': 'Sorter etter:',
+  'shop.sort.default': 'Standard',
+  'shop.sort.priceAsc': 'Pris: lav til høy',
+  'shop.sort.priceDesc': 'Pris: høy til lav',
+  'shop.sort.rating': 'Best vurdert',
+  'shop.sort.name': 'Navn A–Å',
+
   'features.authentic.title': 'Ekte håndverk',
   'features.authentic.body':
     'Hvert stykke er håndlaget med tradisjonelle norrøne teknikker som er gått i arv gjennom generasjoner.',
