@@ -1,31 +1,30 @@
 import comingSoonImg from '../assets/images/coming soon.webp';
 import SEO from './SEO';
+import { useTranslation } from '../i18n/LanguageContext';
+import type { TranslationKey } from '../i18n/translations';
 import '../pages/Home.css';
 import '../pages/Shop.css';
 
 interface PageComingSoonProps {
-  pageTitle: string;
-  seoTitle?: string;
-  seoDescription?: string;
+  titleKey: TranslationKey;
   path: string;
-  message?: string;
+  bodyKey?: TranslationKey;
+  seoDescription?: string;
 }
 
 function PageComingSoon({
-  pageTitle,
-  seoTitle,
-  seoDescription,
+  titleKey,
   path,
-  message,
+  bodyKey = 'comingSoon.pageBody',
+  seoDescription,
 }: PageComingSoonProps) {
+  const { t } = useTranslation();
+  const pageTitle = t(titleKey);
   return (
     <div className="shop">
       <SEO
-        title={seoTitle ?? pageTitle}
-        description={
-          seoDescription ??
-          'This page is coming soon. Norne Craft makes Norse-inspired drinking horns, jewelry, and home decor — handcrafted and built to last.'
-        }
+        title={pageTitle}
+        description={seoDescription ?? t(bodyKey)}
         path={path}
       />
       <div className="page-hero">
@@ -40,11 +39,8 @@ function PageComingSoon({
                 <img src={comingSoonImg} alt="Norse craft products" />
               </div>
               <div className="coming-soon-text">
-                <h2>Coming Soon</h2>
-                <p>
-                  {message ??
-                    'This page is being prepared. Check back soon for handcrafted Norse-inspired drinking horns, jewelry, and home decor.'}
-                </p>
+                <h2>{t('comingSoon.title')}</h2>
+                <p>{t(bodyKey)}</p>
               </div>
             </div>
           </section>

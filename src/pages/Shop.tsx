@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import SEO from '../components/SEO';
 import comingSoonImg from '../assets/images/coming soon.webp';
 import { useShowComingSoon } from '../config/site';
+import { useTranslation } from '../i18n/LanguageContext';
 import '../pages/Home.css';
 import './Shop.css';
 
@@ -50,6 +51,7 @@ function resolveImageSrc(value: string): string | null {
 
 function Shop() {
   const showComingSoon = useShowComingSoon();
+  const { t } = useTranslation();
   const [allProducts, setAllProducts] = useState<Product[]>([]);
   const [selectedCategory, setSelectedCategory] = useState('');
   const [sortBy, setSortBy] = useState('');
@@ -103,7 +105,7 @@ function Shop() {
         description="Browse our handcrafted Norse-inspired collection: drinking horns, jewelry, and home decor. Each piece is small-batch and built to last."
         path="/shop"
       />
-      <button type="button" className="shop-cart" aria-label="Shopping cart">
+      <button type="button" className="shop-cart" aria-label={t('a11y.cart')}>
         <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
           <path d="M7 4h-2a1 1 0 0 0 0 2h1.22l2.32 10.43a3 3 0 0 0 2.93 2.32h7.79a3 3 0 0 0 2.94-2.39l1.27-6.36a1 1 0 0 0-.98-1.2H8.32L7.95 3.04A1 1 0 0 0 6.97 2H4a1 1 0 0 0 0 2h2.18z" />
           <circle cx="10" cy="21" r="1.7" />
@@ -113,7 +115,7 @@ function Shop() {
       </button>
 
       <div className="page-hero">
-        <h1>Shop</h1>
+        <h1>{t('nav.shop')}</h1>
       </div>
 
       <section className="shop-content">
@@ -125,8 +127,8 @@ function Shop() {
                   <img src={comingSoonImg} alt="Norse craft products" />
                 </div>
                 <div className="coming-soon-text">
-                  <h2>Coming Soon</h2>
-                  <p>Our full collection is being prepared. Check back soon for handcrafted Norse-inspired drinking horns, jewelry, and home decor.</p>
+                  <h2>{t('comingSoon.title')}</h2>
+                  <p>{t('comingSoon.shopBody')}</p>
                 </div>
               </div>
             </section>

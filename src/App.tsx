@@ -14,6 +14,7 @@ import {
   BasePathProvider,
   SHOW_COMING_SOON_ONLY,
 } from './config/site';
+import { useTranslation } from './i18n/LanguageContext';
 import './App.css';
 
 function FullSiteRoutes() {
@@ -39,23 +40,23 @@ function PublicComingSoonRoutes() {
       <Route index element={<Home />} />
       <Route
         path="shop"
-        element={<PageComingSoon pageTitle="Shop" path="/shop" />}
+        element={<PageComingSoon titleKey="nav.shop" path="/shop" bodyKey="comingSoon.shopBody" />}
       />
       <Route
         path="about"
-        element={<PageComingSoon pageTitle="About" path="/about" />}
+        element={<PageComingSoon titleKey="nav.about" path="/about" />}
       />
       <Route
         path="contact"
-        element={<PageComingSoon pageTitle="Contact" path="/contact" />}
+        element={<PageComingSoon titleKey="nav.contact" path="/contact" />}
       />
       <Route
         path="blog"
-        element={<PageComingSoon pageTitle="Blog" path="/blog" />}
+        element={<PageComingSoon titleKey="nav.blog" path="/blog" />}
       />
       <Route
         path="faq"
-        element={<PageComingSoon pageTitle="FAQ" path="/faq" />}
+        element={<PageComingSoon titleKey="nav.faq" path="/faq" />}
       />
       <Route path="*" element={<Navigate to="" replace />} />
     </Routes>
@@ -63,9 +64,10 @@ function PublicComingSoonRoutes() {
 }
 
 function SiteLayout({ children }: { children: React.ReactNode }) {
+  const { t } = useTranslation();
   return (
     <div className="app">
-      <a href="#main" className="skip-link">Skip to main content</a>
+      <a href="#main" className="skip-link">{t('a11y.skipToMain')}</a>
       <Header />
       <main id="main" tabIndex={-1}>
         {children}

@@ -1,109 +1,97 @@
 import { useState } from 'react';
 import SEO from '../components/SEO';
+import { useTranslation } from '../i18n/LanguageContext';
+import type { TranslationKey } from '../i18n/translations';
 import './FAQ.css';
 
-const faqData = [
+interface FaqItem {
+  qKey: TranslationKey;
+  aKey: TranslationKey;
+}
+
+interface FaqCategory {
+  categoryKey: TranslationKey;
+  questions: FaqItem[];
+}
+
+const faqData: FaqCategory[] = [
   {
-    category: 'Products',
+    categoryKey: 'faq.cat.products',
     questions: [
-      {
-        q: 'Are your drinking horns food-safe?',
-        a: 'Yes! All our drinking horns are thoroughly cleaned, polished, and sealed with a food-grade coating, making them completely safe for drinking beverages.',
-      },
-      {
-        q: 'What materials do you use?',
-        a: 'We use ethically sourced natural materials including genuine ox horn, sustainably harvested wood, hand-forged metals, and natural leather. Each material is carefully selected for quality and authenticity.',
-      },
-      {
-        q: 'Are the products handmade?',
-        a: 'Yes, every piece is handcrafted by skilled artisans. Due to the handmade nature of our products, slight variations in color, size, and pattern are normal and make each piece unique.',
-      },
+      { qKey: 'faq.q.foodSafe.q', aKey: 'faq.q.foodSafe.a' },
+      { qKey: 'faq.q.materials.q', aKey: 'faq.q.materials.a' },
+      { qKey: 'faq.q.handmade.q', aKey: 'faq.q.handmade.a' },
     ],
   },
   {
-    category: 'Orders & Shipping',
+    categoryKey: 'faq.cat.shipping',
     questions: [
-      {
-        q: 'How long does shipping take?',
-        a: 'Domestic orders typically arrive within 5-7 business days. International shipping takes 10-20 business days depending on location. Express shipping options are available at checkout.',
-      },
-      {
-        q: 'Do you ship internationally?',
-        a: 'Yes, we ship worldwide! Shipping costs and delivery times vary by location. All international orders are carefully packaged to ensure safe arrival.',
-      },
-      {
-        q: 'Can I track my order?',
-        a: 'Absolutely! Once your order ships, you will receive an email with a tracking number so you can follow your package every step of the way.',
-      },
+      { qKey: 'faq.q.shipTime.q', aKey: 'faq.q.shipTime.a' },
+      { qKey: 'faq.q.intl.q', aKey: 'faq.q.intl.a' },
+      { qKey: 'faq.q.track.q', aKey: 'faq.q.track.a' },
     ],
   },
   {
-    category: 'Returns & Care',
+    categoryKey: 'faq.cat.returns',
     questions: [
-      {
-        q: 'What is your return policy?',
-        a: 'We offer a 30-day return policy for unused items in their original packaging. Custom orders are non-refundable. Please contact us to initiate a return.',
-      },
-      {
-        q: 'How do I care for my drinking horn?',
-        a: 'Hand wash with warm water and mild soap. Do not use a dishwasher or microwave. Avoid hot liquids above 60 degrees Celsius. Occasionally apply a thin layer of food-grade oil to maintain the finish.',
-      },
-      {
-        q: 'Do you offer custom orders?',
-        a: 'Yes! We love creating custom pieces. Whether it is a personalized engraving or a bespoke design, contact us with your ideas and we will work together to bring your vision to life.',
-      },
+      { qKey: 'faq.q.return.q', aKey: 'faq.q.return.a' },
+      { qKey: 'faq.q.care.q', aKey: 'faq.q.care.a' },
+      { qKey: 'faq.q.custom.q', aKey: 'faq.q.custom.a' },
     ],
   },
 ];
 
-const faqJsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faqData.flatMap((cat) =>
-    cat.questions.map((item) => ({
-      '@type': 'Question',
-      name: item.q,
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: item.a,
-      },
-    }))
-  ),
-};
-
 function FAQ() {
+  const { t } = useTranslation();
   const [openIndex, setOpenIndex] = useState<string | null>(null);
 
   const toggleQuestion = (key: string) => {
     setOpenIndex(openIndex === key ? null : key);
   };
 
+  // JSON-LD always uses the visible (current-language) text so search engines
+  // index whatever the user actually sees.
+  const faqJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqData.flatMap((cat) =>
+      cat.questions.map((item) => ({
+        '@type': 'Question',
+        name: t(item.qKey),
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: t(item.aKey),
+        },
+      }))
+    ),
+  };
+
   return (
     <div className="faq">
       <SEO
-        title="FAQ"
-        description="Answers about Norne Craft products, shipping, returns, and care: are drinking horns food-safe, do you ship internationally, what is your return policy."
+        title={t('faq.heroTitle')}
+        description={t('faq.section.subtitle')}
         path="/faq"
         jsonLd={faqJsonLd}
       />
       <div className="page-hero">
-        <h1>FAQ</h1>
+        <h1>{t('faq.heroTitle')}</h1>
       </div>
 
       <section className="faq-section">
         <div className="container">
           <div className="section-title">
-            <h2>Frequently Asked Questions</h2>
-            <p>Find answers to common questions about our products and services</p>
+            <h2>{t('faq.section.title')}</h2>
+            <p>{t('faq.section.subtitle')}</p>
           </div>
 
           <div className="faq-content">
             {faqData.map((category) => (
-              <div key={category.category} className="faq-category">
-                <h3 className="faq-category-title">{category.category}</h3>
+              <div key={category.categoryKey} className="faq-category">
+                <h3 className="faq-category-title">{t(category.categoryKey)}</h3>
                 <div className="faq-list">
                   {category.questions.map((item, idx) => {
-                    const key = `${category.category}-${idx}`;
+                    const key = `${category.categoryKey}-${idx}`;
                     const isOpen = openIndex === key;
                     return (
                       <div
@@ -115,7 +103,7 @@ function FAQ() {
                           onClick={() => toggleQuestion(key)}
                           aria-expanded={isOpen}
                         >
-                          <span>{item.q}</span>
+                          <span>{t(item.qKey)}</span>
                           <svg
                             className={`faq-chevron ${isOpen ? 'rotated' : ''}`}
                             width="20"
@@ -130,7 +118,7 @@ function FAQ() {
                         </button>
                         {isOpen && (
                           <div className="faq-answer">
-                            <p>{item.a}</p>
+                            <p>{t(item.aKey)}</p>
                           </div>
                         )}
                       </div>

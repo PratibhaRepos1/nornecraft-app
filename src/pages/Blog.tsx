@@ -1,101 +1,106 @@
 import SEO from '../components/SEO';
+import { useTranslation } from '../i18n/LanguageContext';
+import type { TranslationKey } from '../i18n/translations';
 import './Blog.css';
 
-const blogPosts = [
+interface BlogPost {
+  id: number;
+  titleKey: TranslationKey;
+  excerptKey: TranslationKey;
+  categoryKey: TranslationKey;
+  readTimeKey: TranslationKey;
+}
+
+const blogPosts: BlogPost[] = [
   {
     id: 1,
-    title: 'The Art of Viking Drinking Horns',
-    excerpt:
-      'Discover the rich history behind Viking drinking horns and how they were crafted by Norse artisans centuries ago.',
-    date: 'Coming Soon',
-    category: 'History',
-    readTime: '5 min read',
+    titleKey: 'blog.post.1.title',
+    excerptKey: 'blog.post.1.excerpt',
+    categoryKey: 'blog.cat.history',
+    readTimeKey: 'blog.readTime.5',
   },
   {
     id: 2,
-    title: 'Norse Runes: Symbols of Power',
-    excerpt:
-      'Learn about the Elder Futhark runes, their meanings, and how they were used in ancient Norse culture.',
-    date: 'Coming Soon',
-    category: 'Culture',
-    readTime: '7 min read',
+    titleKey: 'blog.post.2.title',
+    excerptKey: 'blog.post.2.excerpt',
+    categoryKey: 'blog.cat.culture',
+    readTimeKey: 'blog.readTime.7',
   },
   {
     id: 3,
-    title: 'How to Care for Your Horn Mug',
-    excerpt:
-      'Essential tips and tricks for maintaining your drinking horn to ensure it lasts for generations.',
-    date: 'Coming Soon',
-    category: 'Guide',
-    readTime: '4 min read',
+    titleKey: 'blog.post.3.title',
+    excerptKey: 'blog.post.3.excerpt',
+    categoryKey: 'blog.cat.guide',
+    readTimeKey: 'blog.readTime.4',
   },
   {
     id: 4,
-    title: 'The Norns: Weavers of Fate',
-    excerpt:
-      'Explore the mythology of the Norns, the three beings who shape the destiny of gods and men in Norse legend.',
-    date: 'Coming Soon',
-    category: 'Mythology',
-    readTime: '6 min read',
+    titleKey: 'blog.post.4.title',
+    excerptKey: 'blog.post.4.excerpt',
+    categoryKey: 'blog.cat.mythology',
+    readTimeKey: 'blog.readTime.6',
   },
   {
     id: 5,
-    title: 'Traditional Norse Woodworking',
-    excerpt:
-      'A deep dive into the woodworking techniques used by Viking craftsmen to create stunning works of art.',
-    date: 'Coming Soon',
-    category: 'Craft',
-    readTime: '8 min read',
+    titleKey: 'blog.post.5.title',
+    excerptKey: 'blog.post.5.excerpt',
+    categoryKey: 'blog.cat.craft',
+    readTimeKey: 'blog.readTime.8',
   },
   {
     id: 6,
-    title: 'Viking Feasts: Food & Drink',
-    excerpt:
-      'What did the Vikings eat and drink? Explore the culinary traditions of the Norse people.',
-    date: 'Coming Soon',
-    category: 'History',
-    readTime: '5 min read',
+    titleKey: 'blog.post.6.title',
+    excerptKey: 'blog.post.6.excerpt',
+    categoryKey: 'blog.cat.history',
+    readTimeKey: 'blog.readTime.5',
   },
 ];
 
 function Blog() {
+  const { t } = useTranslation();
   return (
     <div className="blog">
       <SEO
-        title="Blog"
-        description="Stories from the world of Norse craftsmanship: drinking horn history, rune meanings, mythology, and care guides for your handcrafted pieces."
+        title={t('blog.heroTitle')}
+        description={t('blog.section.subtitle')}
         path="/blog"
       />
       <div className="page-hero">
-        <h1>Blog</h1>
+        <h1>{t('blog.heroTitle')}</h1>
       </div>
 
       <section className="blog-section">
         <div className="container">
           <div className="section-title">
-            <h2>Norse Knowledge & Stories</h2>
-            <p>Explore the world of Norse craftsmanship and mythology</p>
+            <h2>{t('blog.section.title')}</h2>
+            <p>{t('blog.section.subtitle')}</p>
           </div>
 
           <div className="blog-grid">
-            {blogPosts.map((post) => (
-              <article key={post.id} className="blog-card">
-                <div className="blog-card-image">
-                  <span className="blog-category">{post.category}</span>
-                </div>
-                <div className="blog-card-content">
-                  <div className="blog-meta">
-                    <span>{post.date}</span>
-                    <span>{post.readTime}</span>
+            {blogPosts.map((post) => {
+              const title = t(post.titleKey);
+              return (
+                <article key={post.id} className="blog-card">
+                  <div className="blog-card-image">
+                    <span className="blog-category">{t(post.categoryKey)}</span>
                   </div>
-                  <h3>{post.title}</h3>
-                  <p>{post.excerpt}</p>
-                  <span className="read-more" aria-label={`${post.title} — coming soon`}>
-                    Coming Soon
-                  </span>
-                </div>
-              </article>
-            ))}
+                  <div className="blog-card-content">
+                    <div className="blog-meta">
+                      <span>{t('blog.date.comingSoon')}</span>
+                      <span>{t(post.readTimeKey)}</span>
+                    </div>
+                    <h3>{title}</h3>
+                    <p>{t(post.excerptKey)}</p>
+                    <span
+                      className="read-more"
+                      aria-label={t('blog.aria.comingSoon', { title })}
+                    >
+                      {t('blog.readMore')}
+                    </span>
+                  </div>
+                </article>
+              );
+            })}
           </div>
         </div>
       </section>

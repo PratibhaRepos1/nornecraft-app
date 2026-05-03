@@ -1,10 +1,12 @@
 import { Link } from 'react-router-dom';
 import logo from '../assets/images/nornecraft logo.webp';
 import { useBasePath, withBase } from '../config/site';
+import { useTranslation } from '../i18n/LanguageContext';
 import './Footer.css';
 
 function Footer() {
   const basePath = useBasePath();
+  const { t } = useTranslation();
   const link = (path: string) => withBase(basePath, path);
   return (
     <footer className="footer">
@@ -21,8 +23,8 @@ function Footer() {
               </svg>
             </span>
             <div>
-              <strong>Free shipping</strong>
-              <small>On orders over $75</small>
+              <strong>{t('trust.shipping.title')}</strong>
+              <small>{t('trust.shipping.body')}</small>
             </div>
           </div>
           <div className="trust-item">
@@ -33,8 +35,8 @@ function Footer() {
               </svg>
             </span>
             <div>
-              <strong>Secure checkout</strong>
-              <small>Stripe &amp; PayPal</small>
+              <strong>{t('trust.checkout.title')}</strong>
+              <small>{t('trust.checkout.body')}</small>
             </div>
           </div>
           <div className="trust-item">
@@ -45,8 +47,8 @@ function Footer() {
               </svg>
             </span>
             <div>
-              <strong>Easy returns</strong>
-              <small>30-day window</small>
+              <strong>{t('trust.returns.title')}</strong>
+              <small>{t('trust.returns.body')}</small>
             </div>
           </div>
           <div className="trust-item">
@@ -56,8 +58,8 @@ function Footer() {
               </svg>
             </span>
             <div>
-              <strong>Handcrafted</strong>
-              <small>Small-batch quality</small>
+              <strong>{t('trust.handcrafted.title')}</strong>
+              <small>{t('trust.handcrafted.body')}</small>
             </div>
           </div>
         </div>
@@ -74,11 +76,8 @@ function Footer() {
               height="40"
               loading="lazy"
             />
-            <p className="tagline">Ancient Magic, Modern Craft</p>
-            <p className="footer-desc">
-              Norse-inspired goods made with traditional techniques and
-              modern quality standards.
-            </p>
+            <p className="tagline">{t('footer.tagline')}</p>
+            <p className="footer-desc">{t('footer.description')}</p>
             <div className="footer-social">
               <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" /></svg>
@@ -93,31 +92,31 @@ function Footer() {
           </div>
 
           <div className="footer-links">
-            <h4>Shop</h4>
+            <h4>{t('footer.shop')}</h4>
             <ul>
-              <li><Link to={link('/shop')}>All Products</Link></li>
-              <li><Link to={link('/shop')}>Drinking Horns</Link></li>
-              <li><Link to={link('/shop')}>Jewelry</Link></li>
-              <li><Link to={link('/shop')}>Home Decor</Link></li>
+              <li><Link to={link('/shop')}>{t('footer.shop.all')}</Link></li>
+              <li><Link to={link('/shop')}>{t('footer.shop.horns')}</Link></li>
+              <li><Link to={link('/shop')}>{t('footer.shop.jewelry')}</Link></li>
+              <li><Link to={link('/shop')}>{t('footer.shop.decor')}</Link></li>
             </ul>
           </div>
 
           <div className="footer-links">
-            <h4>Help</h4>
+            <h4>{t('footer.help')}</h4>
             <ul>
-              <li><Link to={link('/faq')}>FAQ</Link></li>
-              <li><Link to={link('/contact')}>Contact</Link></li>
-              <li><Link to={link('/faq')}>Shipping Info</Link></li>
-              <li><Link to={link('/faq')}>Returns &amp; Exchanges</Link></li>
+              <li><Link to={link('/faq')}>{t('footer.help.faq')}</Link></li>
+              <li><Link to={link('/contact')}>{t('footer.help.contact')}</Link></li>
+              <li><Link to={link('/faq')}>{t('footer.help.shipping')}</Link></li>
+              <li><Link to={link('/faq')}>{t('footer.help.returns')}</Link></li>
             </ul>
           </div>
 
           <div className="footer-links">
-            <h4>Company</h4>
+            <h4>{t('footer.company')}</h4>
             <ul>
-              <li><Link to={link('/about')}>About</Link></li>
-              <li><Link to={link('/blog')}>Blog</Link></li>
-              <li><Link to={link('/contact')}>Contact</Link></li>
+              <li><Link to={link('/about')}>{t('footer.company.about')}</Link></li>
+              <li><Link to={link('/blog')}>{t('footer.company.blog')}</Link></li>
+              <li><Link to={link('/contact')}>{t('footer.company.contact')}</Link></li>
             </ul>
           </div>
         </div>
@@ -125,7 +124,7 @@ function Footer() {
 
       <div className="footer-bottom">
         <div className="container footer-bottom-inner">
-          <p>© 2025 Norne Craft. All rights reserved.</p>
+          <p>{t('footer.copyright', { year: new Date().getFullYear() })}</p>
         </div>
       </div>
     </footer>
