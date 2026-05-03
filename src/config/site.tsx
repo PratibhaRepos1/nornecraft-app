@@ -10,9 +10,12 @@ export const SHOW_COMING_SOON_ONLY = true;
 export const ADMIN_BASE_PATH = '/demo';
 
 // Very-light access gate for /demo. This is client-side only and not real security
-// — it just keeps casual visitors out. Change this to whatever you want to share
-// with admins/clients. Set to an empty string to disable the gate entirely.
-export const ADMIN_PASSWORD = 'Arvin1002!';
+// — Vite inlines this value into the built JS, so anyone reading the bundle can
+// see it. It just keeps casual visitors out. Set VITE_ADMIN_PASSWORD in .env.local
+// (gitignored). If unset, the gate is disabled and /demo is open.
+// eslint-disable-next-line react-refresh/only-export-components
+export const ADMIN_PASSWORD: string =
+  import.meta.env.VITE_ADMIN_PASSWORD ?? '';
 export const ADMIN_AUTH_STORAGE_KEY = 'nornecraft.admin.authed';
 
 const BasePathContext = createContext<string>('');
