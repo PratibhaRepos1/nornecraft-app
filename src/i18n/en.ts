@@ -144,7 +144,7 @@ export const en = {
     "Have a question about our products or want to place a custom order? We'd love to hear from you!",
   'contact.info.email': 'Email',
   'contact.info.location': 'Location',
-  'contact.info.locationValue': 'Norse Lands, Scandinavia',
+  'contact.info.locationValue': 'Norway',
   'contact.info.hours': 'Hours',
   'contact.info.hoursValue': 'Mon - Fri: 9AM - 6PM',
   'contact.form.name': 'Full Name',

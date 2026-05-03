@@ -145,7 +145,7 @@ export const no: Record<TranslationKey, string> = {
     'Har du et spørsmål om produktene våre eller ønsker å bestille noe spesialtilpasset? Vi vil gjerne høre fra deg!',
   'contact.info.email': 'E-post',
   'contact.info.location': 'Sted',
-  'contact.info.locationValue': 'Norrøne land, Skandinavia',
+  'contact.info.locationValue': 'Norge',
   'contact.info.hours': 'Åpningstider',
   'contact.info.hoursValue': 'Man – fre: 09:00 – 18:00',
   'contact.form.name': 'Fullt navn',

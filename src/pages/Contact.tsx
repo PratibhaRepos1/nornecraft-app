@@ -47,7 +47,7 @@ function Contact() {
                   </div>
                   <div>
                     <h4>{t('contact.info.email')}</h4>
-                    <p>info@nornecraft.com</p>
+                    <p>post@nornecraft.com</p>
                   </div>
                 </div>
 
